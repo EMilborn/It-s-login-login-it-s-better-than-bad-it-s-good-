@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>{{heading01}}</h1>
+    <form action="/authenticate/" method="POST">
+      {{name01}}: <br>
+      <input type="text" name="text01"><br>
+      {{name02}}: <br>
+      <input type="text" name="text02"><br>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>
+
