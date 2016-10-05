@@ -1,9 +1,9 @@
 import csv
 
 def register(username, password):
-    info = csv.reader(open("info.csv"))
-    return false#still don't know what im doing
+    #info = csv.reader(open("info.csv"))
+    return false #still don't know what im doing
 
 def login(username, password):
-    info = csv.reader(open("info.csv"))
-    return false#still don't know what im doing
+    #info = csv.reader(open("info.csv"))
+    return false #still don't know what im doing

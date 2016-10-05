@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from login import register, login
+from utils import login
 import hashlib
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def getForm():
 def auth():
     winOrLose = "ERROR"
     password = hashlib.sha256(request.form["Password"]).hexdigest()
-    username = request.form("Username")
+    username = request.form["Username"]
     
     if request.form["R/L"] == "Register":
         if login.register(username, password):
