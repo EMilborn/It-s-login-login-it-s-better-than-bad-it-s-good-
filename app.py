@@ -7,13 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/login")
 def getForm():
-    return render_template('form.html',
-                           name01 = "Username",
-                           name02 = "Password",
-                           heading01 = "LOGIN",
-                           name03 = "R/L",
-                           name04 = "Register",
-                           name05 = "Login")
+    return render_template('form.html')
 
 @app.route("/authenticate/", methods = ['POST'])
 def auth():
