@@ -1,34 +1,42 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from utils import login
 import hashlib
 
 app = Flask(__name__)
+session["Logged In"] = False
 
-@app.route("/")
 @app.route("/login")
 def getForm():
+    if session["Logged In"]
+        redirect(url_for('mainPage'))
     return render_template('form.html')
 
 @app.route("/authenticate/", methods = ['POST'])
 def auth():
-    winOrLose = "ERROR"
+    text = "ERROR"
     password = hashlib.sha256(request.form["Password"]).hexdigest()
     username = request.form["Username"]
     
     if request.form["action"] == "Register":
         if login.register(username, password):
-            winOrLose = "Register Successful"
+            text = "Register Successful"
         else:
-            winOrLose = "Register Failed"
+            text = "Username Exists Already"
+        return render_template('form.html' text = text)
 
     elif request.form["action"] == "Login":
         if login.login(username, password):
-            winOrLose = "Login Successful"
+            session["Logged In"] = True
+            session["Username"] = username
+            return redirect(url_for('mainPage'))    
         else:
-            winOrLose = "Login Failed"
+            return render_template('form.html' text = "Login Failed")
 
-    return render_template('authenticate.html',
-                           text = winOrLose)
+@app.route("/")
+def mainPage():
+    if !session["Logged In"]
+        redirect(url_for('getForm'))
+    return render_template('main.html')    
             
     
         
