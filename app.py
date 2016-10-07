@@ -15,13 +15,13 @@ def auth():
     password = hashlib.sha256(request.form["Password"]).hexdigest()
     username = request.form["Username"]
     
-    if request.form["R/L"] == "Register":
+    if request.form["action"] == "Register":
         if login.register(username, password):
             winOrLose = "Register Successful"
         else:
             winOrLose = "Register Failed"
 
-    elif request.form["R/L"] == "Login":
+    elif request.form["action"] == "Login":
         if login.login(username, password):
             winOrLose = "Login Successful"
         else:
