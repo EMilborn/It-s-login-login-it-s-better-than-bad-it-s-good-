@@ -7,7 +7,7 @@ session["Logged In"] = False
 
 @app.route("/login")
 def getForm():
-    if session["Logged In"]
+    if session["Logged In"] 
         redirect(url_for('mainPage'))
     return render_template('form.html')
 
@@ -35,8 +35,8 @@ def auth():
 @app.route("/")
 def mainPage():
     if !session["Logged In"]
-        redirect(url_for('getForm'))
-    return render_template('main.html')    
+        return redirect(url_for('getForm'))
+    return render_template('main.html', text = session["Username"])    
             
     
         
