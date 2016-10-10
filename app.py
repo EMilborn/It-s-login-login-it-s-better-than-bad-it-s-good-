@@ -1,13 +1,14 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect, url_for
 from utils import login
+import os
 import hashlib
 
 app = Flask(__name__)
-session["Logged In"] = False
+app.secret_key = os.urandom(24)
 
 @app.route("/login")
 def getForm():
-    if session["Logged In"] 
+    if "Username" in session:
         redirect(url_for('mainPage'))
     return render_template('form.html')
 
@@ -22,23 +23,25 @@ def auth():
             text = "Register Successful"
         else:
             text = "Username Exists Already"
-        return render_template('form.html' text = text)
+        return render_template('form.html', text = text)
 
     elif request.form["action"] == "Login":
         if login.login(username, password):
-            session["Logged In"] = True
             session["Username"] = username
             return redirect(url_for('mainPage'))    
         else:
-            return render_template('form.html' text = "Login Failed")
+            return render_template('form.html', text = "Login Failed")
 
 @app.route("/")
 def mainPage():
-    if !session["Logged In"]
+    if not "Username" in session:
         return redirect(url_for('getForm'))
-    return render_template('main.html', text = session["Username"])    
+    return render_template('main.html', name = session["Username"])    
             
-    
+@app.route("/logout/")
+def logout():
+    session.pop("Username")
+    return redirect(url_for('getForm'))
         
     
 
