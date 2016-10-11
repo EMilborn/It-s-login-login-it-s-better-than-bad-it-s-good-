@@ -40,9 +40,10 @@ def mainPage():
             
 @app.route("/logout/")
 def logout():
-    session.pop("Username")
-    return redirect(url_for('getForm'))
-        
+    if "Username" in session:
+        session.pop("Username")
+        return redirect(url_for('getForm'))
+    return redirect(url_for('getForm'))    
     
 
 if __name__ == "__main__":
